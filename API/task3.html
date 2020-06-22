@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task3</title>
+</head>
+<body>
+    <button onclick="postListByComments()">SORT POST LIST BY COMMENTS</button>
+    <button onclick="postListByLikes()">SORT POST LIST BY LIKES</button>
+    <script>
+        function postListByComments()
+        {
+            //var data={ sortquery:"select id,title,Description,authorId,numComments from post order by numComments"};
+            fetch('http://localhost:3000/task3postListByComments')
+            .then(response => response.json())
+            .then((data)=> {
+                //console.log(data);
+                var result=data.result;
+                console.log(result);
+                var table='';
+                table += '<tr>';
+                for(var column in result[0])
+                {
+                    table+='<td><label>'+column+'</label></td>';
+                }
+                table+='</tr>';
+                for(var row in result)
+                {
+                    table+='<tr>';
+                    for(var column in result[0])
+                    {
+                        table+='<td>'+result[row][column]+'</td>';
+                    }
+                    table+='</td>';
+                }
+                //document.write(table);
+                document.write('<h3> Filtered Table</h3>');
+                document.write('<table border="2">'+table+'</table>');
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        }
+
+
+        function postListByLikes()
+        {
+            //var data={ sortquery:"select id,title,authorId,numLikes from post order by numLikes"};
+            fetch('http://localhost:3000/task3postListByLikes')
+            .then(response => response.json())
+            .then((data)=> {
+            //console.log(data);
+                var result=data.result;
+                console.log(result);   
+                var table='';
+                table += '<tr>';
+                for(var column in result[0])
+                {
+                    table+='<td><label>'+column+'</label></td>';
+                }
+                table+='</tr>';
+                for(var row in result)
+                {
+                    table+='<tr>';
+                    for(var column in result[0])
+                    {
+                        table+='<td>'+result[row][column]+'</td>';
+                    }
+                    table+='</td>';
+                }
+                //document.write(table);
+                document.write('<h3> Filtered Table</h3>');
+                document.write('<table border="2">'+table+'</table>');
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        }
+    </script>
+</body>
+</html>

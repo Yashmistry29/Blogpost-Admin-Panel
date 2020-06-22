@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task2</title>
+</head>
+<body>
+    <button onclick="userListByComments()">SORT USER LIST BY COMMENTS</button>
+    <button onclick="userListByLikes()">SORT USER LIST BY LIKES</button>
+    <button onclick="userListByPosts()">SORT USER LIST BY POST</button>
+    <script>
+        function userListByComments()
+        {
+            fetch('http://localhost:3000/task2userListByComments')
+            .then(response => response.json())
+            .then((data)=> {
+            //console.log(data);
+            var result=data.result;
+            console.log(result);
+            var table='';
+            table += '<tr>';
+            for(var column in result[0])
+            {
+                table+='<td><label>'+column+'</label></td>';
+            }
+            table+='</tr>';
+            for(var row in result)
+            {
+                table+='<tr>';
+                for(var column in result[0])
+                {
+                    table+='<td>'+result[row][column]+'</td>';
+                }
+                table+='</td>';
+            }
+            //document.write(table);
+            document.write('<h3> Filtered Table</h3>');
+            document.write('<table border="2">'+table+'</table>');
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        }
+
+        function userListByLikes()
+        {
+            //var data={ sortquery:"select id,firstName,lastName,numLikes from authors order by numLikes"};
+            fetch('http://localhost:3000/task2userListByLikes')
+            .then(response => response.json())
+            .then((data)=> {
+                //console.log(data);
+                var result=data.result;
+                console.log(result);
+                var table='';
+            table += '<tr>';
+            for(var column in result[0])
+            {
+                table+='<td><label>'+column+'</label></td>';
+            }
+            table+='</tr>';
+            for(var row in result)
+            {
+                table+='<tr>';
+                for(var column in result[0])
+                {
+                    table+='<td>'+result[row][column]+'</td>';
+                }
+                table+='</td>';
+            }
+            //document.write(table);
+            document.write('<h3> Filtered Table</h3>');
+            document.write('<table border="2">'+table+'</table>');
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        }
+
+        function userListByPosts()
+        {
+            //var data={ sortquery:"select id,firstName,lastName,numPost from authors order by numPost"};
+            fetch('http://localhost:3000/task2userListByPosts')
+            .then(response => response.json())
+            .then((data)=> {
+                //console.log(data);
+                var result=data.result;
+                console.log(result);
+                var table='';
+            table += '<tr>';
+            for(var column in result[0])
+            {
+                table+='<td><label>'+column+'</label></td>';
+            }
+            table+='</tr>';
+            for(var row in result)
+            {
+                table+='<tr>';
+                for(var column in result[0])
+                {
+                    table+='<td>'+result[row][column]+'</td>';
+                }
+                table+='</td>';
+            }
+            //document.write(table);
+            document.write('<h3> Filtered Table</h3>');
+            document.write('<table border="2">'+table+'</table>');
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        }
+    </script>
+</body>
+</html>
